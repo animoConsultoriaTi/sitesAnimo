@@ -1,0 +1,52 @@
+#about-page{
+  margin-top: -5rem;
+
+  @media (max-width: 768px) {
+    margin-top: -2rem;
+  }
+
+  .container {
+    @include resolution; 
+    .info-container {
+      margin-left: 1rem;
+
+      h2.arrow {
+        display: flex;
+        align-items: center;
+        &::before {
+          display: inline-block;
+          margin-right: 0.5rem;
+          content: "";
+          border-top: 0.4rem solid;
+          border-right: 0.4rem solid transparent;
+          border-left: 0;
+          border-left: 0.4rem solid transparent;
+          transform: rotate(-90deg);
+          -webkit-transform: rotate(-90deg);
+          -moz-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
+          -o-transform: rotate(-90deg);
+        }
+      }
+
+      p {
+        margin: 0 0 1rem 0.5rem;
+      }
+      &.reasons {
+        margin-left: 0;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        
+        ul {
+          list-style-type: disc;
+          margin-left: 1.5rem;
+          margin-top: 1.2rem;
+
+          li {
+            margin-bottom: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}

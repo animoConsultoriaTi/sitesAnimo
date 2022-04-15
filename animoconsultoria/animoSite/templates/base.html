@@ -1,0 +1,122 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<!-- Descrição da Página no Google-->">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ânimo Consultoria - Niterói-RJ">
+    <meta property="og:description" content="<!-- Descrição da Página no Google> -->">
+    <meta property="og:url" content="<!-- URL do Site-->">
+    <meta property="og:image" content="<!--URL/src/assets/img/og-image.png-->">
+    <title>Ânimo Consultoria - Niterói-RJ</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="{% static 'dist/bundle.js' %}" defer></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+  </head>
+
+<body>
+  <div class="float-icons">
+    <a class="maintenance" href="#" class="icon-container">
+      <i class="icon-mail"></i>
+    </a>
+    <a class="icon-container whatsapp">
+      <i class="icon-whatsapp"></i>
+    </a>
+  </div>
+  <header id="header">
+    <div class="container">
+      <div class="logo-container">
+        <a href="{% url 'home' %}"><img src="{% static 'public/logo.svg' %}" alt="Ânimo Consultoria"></a>
+      </div>
+      <nav class="menu-container">
+        <button data-menu="button" aria-expanded="false" aria-controls="menu">
+          <i class="icon-menu active"></i>
+          <i class="icon-x"></i>
+        </button>
+        <ul data-menu="menu" id="menu">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="services-trigger" data-dropdown="trigger">
+            <a>Serviços</a>
+            <ul class="services-menu" data-dropdown="menu">
+              {% for service in services%}
+              <li><a href="{% url 'service' service.slug %}">{{service.title}}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="{% url 'selectiveProcess' %}">Trabalhe Conosco</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="{% url 'about' %}">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  {% if messages %}
+  <div id="message">
+    <div class="container">
+      {% for message in messages %}
+      <p>{{message}}</p>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <footer id="footer">
+    <div class="pre-footer">
+      <div class="container">
+        <div class="info-container">
+          <img src="{% static 'public/assets/img/short-logo.png' %}" alt="Ânimo Consultoria - Logo Reduzida">
+          <p>Entre em contato conosco e dê um Ânimo no seu negócio!</p>
+        </div>
+        <div class="links-container">
+          <ul>
+            <li><a href="{% url 'about' %}">Sobre Nós</a></li>
+            <li><a href="#services">Nossos Serviços</a></li>
+            <li><a href="" target="_blank">Trabalhe Conosco</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+        </div>
+        <div class="social-container">
+          <ul>
+            <li><a href="https://www.facebook.com/animoconsultoriapage" target="_blank"><img src="{% static 'public/assets/icons/social-media/facebook-icon.png' %}" alt="Facebook Logo" style="display: inline;">/animoconsultoriapage</li></a>
+            <li><a href="https://www.instagram.com/animoconsultoria/" target="_blank"><i><img src="{% static 'public/assets/icons/social-media/instagram-icon.png' %}" alt="Instagram Logo" style="display: inline;"></i>@animoconsultoria</li></a>
+            <li><a href="https://www.linkedin.com/in/animoconsultoria/" target="_blank"><i><img src="{% static 'public/assets/icons/social-media/linkedin-icon.png' %}" alt="LinkedIn Logo" style="display: inline;"></i>/animoconsultoria</li></a>
+          </ul>
+        </div>
+        <div class="address-container">
+          <ul>
+            <li><span>Endereço: </span>Rua Gastao Gonçalves
+              Niteroi, RJ 24220-400
+              Brasil</li>
+            <li><span>Telefone: </span>(21) 2199-6600</li>
+            <li><span>Email: </span>contato@animoconsultoria.com.br</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>Copyright &copy; 2022 - Ânimo Consultoria. Todos os Direitos Reservados</span>
+    </div>
+  </footer>
+</body>
+
+</html>

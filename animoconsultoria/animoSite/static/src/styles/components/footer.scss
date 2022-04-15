@@ -1,0 +1,69 @@
+#footer {
+  .footer {
+    text-align: center;
+    padding: 1.625rem;
+    background-color: var(--dark-dark-blue);
+    font-size: 0.9rem;
+
+    span {
+      color: var(--white);
+    }
+  }
+
+  .pre-footer {
+    .container {
+      @include resolution(flex);
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 0.8rem;
+
+      ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .info-container {
+        img {
+          width: 3.75rem;
+          margin-bottom: 1rem;
+        }
+        width: min(15rem, 100%);
+      }
+
+      .links-container {
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      .social-container {
+        ul li {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          a {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+
+            &:hover {
+              text-decoration: underline;
+            }
+
+            img {
+              width: 1.5rem;
+            }
+          }
+        }
+      }
+      .address-container {
+        width: min(20.45rem, 100%);
+
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

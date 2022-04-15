@@ -1,0 +1,185 @@
+#header {
+  background-color: var(--dark-dark-blue);
+  .container {
+    @include resolution(flex);
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-container {
+      img {
+        width: 12.5rem;
+
+        @media (max-width: 768px) {
+          width: 12rem;
+        }
+
+        @media (max-width: 375px) {
+          width: 9rem;
+        }
+      }
+    }
+    .menu-container {
+      display: flex;
+      align-items: center;
+
+      [data-menu="button"] {
+        display: none;
+        position: relative;
+        width: 30px;
+        height: 30px;
+
+        @media (max-width: 985px) {
+          display: flex;
+          padding: 0.6rem;
+          cursor: pointer;
+
+          i {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--white);
+            font-size: 2rem;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.6s;
+
+            &.active {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+        }
+
+        @media (max-width: 375px) {
+          padding: 1rem .8rem;
+        }
+      }
+
+      #menu{
+        display: flex;
+        gap: 1rem;
+      
+        li a {
+          color: var(--white);
+          user-select: none;
+          font-family: "Gordita Medium";
+          font-size: .85rem;
+          text-transform: uppercase;
+        }
+
+        @media (max-width: 985px) {
+          display: block;
+          background-color: var(--dark-dark-blue);
+          width: 23rem;
+          position: absolute;
+          transition: left 0.6s, opacity 0.6s;
+          z-index: 100;
+          top: 7.5rem;
+          opacity: 0;
+          left: -100%;
+
+          li {
+            a {
+              text-transform: capitalize;
+              display: block;
+              padding: 1rem;
+              border-top: solid 1px hsla(0, 0%, 100%, 0.2);
+
+              &:hover {
+                opacity: 1;
+                background-color: var(--dark-blue);
+              }
+            }
+          }
+
+          &.active {
+            opacity: 1;
+            left: 0;
+          }
+        }
+
+        @media(max-width: 768px){
+          top: 5.9rem;
+          width: 19rem;
+        }
+
+        @media (max-width: 375px) {
+          top: 5.1rem;
+          width: 100%;
+        }
+
+        .services-trigger {
+          position: relative;
+          user-select: none;
+        }
+
+        .services-menu {
+          display: none;
+          &.active {
+              width: 20rem;
+              display: block;
+              z-index: 5;
+              position: absolute;
+              background-color: var(--dark-dark-blue);
+              top: 4.55rem;
+              left: 0;
+              border-radius: 0 0 3px 3px;
+              -webkit-border-radius: 0 0 3px 3px;
+              -moz-border-radius: 0 0 3px 3px;
+              -ms-border-radius: 0 0 3px 3px;
+              -o-border-radius: 0 0 3px 3px;
+
+              @media (max-width: 985px) {
+                position: static;
+                width: 100%;
+              }
+    
+              li a {
+                display: block;
+                padding: .7rem .8rem;
+                border-top: solid 1px hsla(0, 0%, 100%, 0.2);
+
+                @media (max-width: 985px) {
+                 padding: 1rem 1rem 1rem 2rem
+                }
+    
+                &:hover {
+                  opacity: 1;
+                  background-color: var(--dark-blue);
+                }
+              }
+          }
+        }
+
+        .services-trigger > a {
+          cursor: pointer;
+          &::after {
+            display: inline-block;
+            margin-left: 0.255rem;
+            content: "";
+            border-top: 0.4rem solid;
+            border-right: 0.4rem solid transparent;
+            border-left: 0;
+            border-left: 0.4rem solid transparent;
+          }
+        }
+
+        .services-trigger.active > a::after {
+            transform: rotate(-180deg);
+            -webkit-transform: rotate(-180deg);
+            -moz-transform: rotate(-180deg);
+            -ms-transform: rotate(-180deg);
+            -o-transform: rotate(-180deg);
+        }
+      }
+    }
+
+    .toggle-buttons-container {
+      display: none;
+      @media (max-width: 985px) {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="selectiveProcess">
+  <div class="container">
+    <h1>Formulário de Processo Seletivo</h1>
+    <p>Inscreva-se e faça parte da nossa equipe!</p>
+    <form data-form="selectiveProcess" method="POST" action="/register/" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group" data-group1>
+        <label for="name">Nome:</label>
+        {{form.name}}
+      </div>
+      <div class="form-group">
+        <label for="registration">Nº Matrícula:</label>
+        {{form.registration}}
+      </div>
+      <div class="form-group">
+        <label for="age">Idade:</label>
+        {{form.age}}
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        {{form.phone}}
+      </div>
+      <div class="form-group" data-center>
+        <label for="email">Email da Rede Lasalle:</label>
+        {{form.email}}
+      </div>
+      <div class="form-group" data-center>
+        <label for="course">Curso:</label>
+        {{form.course}}
+      </div>
+      <div class="form-group">
+        <label for="shift">Turno:</label>
+        {{form.shift}}
+      </div>
+      <div class="form-group">
+        <label for="enrollment_date">Data de Inscrição:</label>
+        {{form.enrollment_date}}
+      </div>
+      <div class="form-group">
+        <label for="first_sector">Primeira Opção de Setor:</label>
+        {{form.first_sector}}
+      </div>
+      <div class="form-group">
+        <label for="second_sector">Segunda Opção de Setor:</label>
+        {{form.second_sector}}
+      </div>
+      <div class="form-group" data-center>
+        <label for="curriculum">Currículo:</label>
+        {{form.curriculum}}
+      </div>
+      <input type="submit" value="Inscrever-se">
+    </form>
+  </div>
+</section>
+{% endblock %}

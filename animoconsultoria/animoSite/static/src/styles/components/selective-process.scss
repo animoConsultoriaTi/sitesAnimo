@@ -1,0 +1,51 @@
+#selectiveProcess {
+  .container {
+    @include resolution;
+
+    form {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      input,
+      select {
+        width: 100%;
+        padding: 0.625rem;
+        border: 1px solid var(--dark-dark-blue);
+        border-radius: 3px;
+        &:focus {
+          outline: 1px solid rgba(0, 0, 0, 0.2);
+        }
+      }
+      input.error {
+        border-color: #ED0E0C;
+      }
+      input[type=number]::-webkit-inner-spin-button { 
+        -webkit-appearance: none;
+    }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      .form-group[data-center] {
+        grid-column: 1/3;
+      }
+      input[type="submit"] {
+        width: fit-content;
+        background-color: var(--light-blue);
+        border-radius: 3px;
+        color: var(--white);
+        border: none;
+        cursor: pointer;
+      }
+      select {
+        padding-right: 1rem;
+        background-color: var(--white);
+      }
+
+      @media (max-width: 425px) {
+        display: block;
+      }
+    }
+  }
+}

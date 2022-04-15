@@ -1,0 +1,10 @@
+@mixin resolution($display: block) {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  padding: 2rem 5rem;
+  display: $display;
+
+  @media (max-width: 768px) {
+    padding: 1.25rem 2rem;
+  }
+}

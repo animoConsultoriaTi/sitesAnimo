@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section id="not-found-404">
+  <div class="container">
+    <img src="{% static 'public/assets/img/404-illustration.png'%}" alt="Não Encontrado">
+    <p>O que você está procurando não foi encontrado!</p>
+    <a href="{% url 'home' %}">Voltar para o site</a>
+  </div>
+</section>
+{% endblock %}
