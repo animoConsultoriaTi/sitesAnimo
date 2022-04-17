@@ -1,29 +1,41 @@
-import { handleOutsideClick } from "./helpers.js";
+import handleOutsideClick from './helpers.js';
 
-export function initMenuMobile() {
-  const button = document.querySelector("[data-menu='button']");
-  const buttonIcons = button.querySelectorAll("i");
-  const menu = document.querySelector("[data-menu='menu']");
+export default class MenuMobile {
+  constructor(button, menu) {
+    this.button = document.querySelector(button);
+    this.icons = this.button.querySelectorAll('i');
+    this.menu = document.querySelector(menu);
+    this.activeClass = 'active';
 
-  if (button && menu) {
-    button.addEventListener("click", handleClick);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-    function handleClick() {
-      buttonIcons.forEach((item) => {
-        item.classList.toggle("active");
-      });
-      menu.classList.add("active");
-      button.setAttribute("aria-expanded", "true");
+  handleClick() {
+    this.icons.forEach((item) => {
+      item.classList.toggle(this.activeClass);
+    });
+    this.menu.classList.add(this.activeClass);
+    this.button.setAttribute('aria-expanded', 'true');
 
-      handleOutsideClick(menu, () => {
-        if (buttonIcons[1].classList.contains("active")) {
-          buttonIcons.forEach((item) => {
-            item.classList.toggle("active");
-          });
-        }
-        menu.classList.remove("active");
-        button.setAttribute("aria-expanded", "false");
-      });
+    handleOutsideClick(this.menu, () => {
+      if (this.icons[1].classList.contains(this.activeClass)) {
+        this.icons.forEach((item) => {
+          item.classList.toggle(this.activeClass);
+        });
+      }
+      this.menu.classList.remove(this.activeClass);
+      this.button.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  addMenuMobileEvents() {
+    this.button.addEventListener('click', this.handleClick);
+  }
+
+  init() {
+    if (this.button && this.menu) {
+      this.addMenuMobileEvents();
     }
+    return this;
   }
 }

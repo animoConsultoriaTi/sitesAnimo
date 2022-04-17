@@ -1,43 +1,55 @@
-export function initValidateProcessForm() {
-  const form = document.querySelector('[data-form="selectiveProcess"]');
+export default class ProcessForm {
+  constructor(form) {
+    this.form = document.querySelector(form);
+    this.validateEmail = /[\w.-]+@soulasalle.com.br/;
+    this.validateCurriculum = /.(?:png|jpg|jpeg|pdf|docx)$/i;
+    this.validatePhone = /(\(?\d{2}\)?[\s-]?)?(\d{4,5})[\s-]?(\d{4})/;
 
-  if (form) {
-    form.email.addEventListener('change', verifyEmail);
-    form.curriculum.addEventListener('change', verifyCurriculum);
-    form.phone.addEventListener('change', verifyPhone);
+    this.verifyEmail = this.verifyEmail.bind(this);
+    this.verifyCurriculum = this.verifyCurriculum.bind(this);
+    this.verifyPhone = this.verifyPhone.bind(this);
+  }
 
-    function verifyEmail(event) {
-      const validateEmail = /[\w.-]+@soulasalle.com.br/;
-      if (!event.target.value.match(validateEmail)) {
-        event.target.classList.add('error');
-        event.target.setCustomValidity('O E-mail inserido não é válido.');
-      } else {
-        event.target.classList.remove('error');
-        event.target.setCustomValidity('');
-      }
+  verifyEmail() {
+    if (!this.form.email.value.match(this.validateEmail)) {
+      this.form.email.classList.add('error');
+      this.form.email.setCustomValidity('O E-mail inserido não é válido.');
+    } else {
+      this.form.email.classList.remove('error');
+      this.form.email.setCustomValidity('');
     }
+  }
 
-    function verifyCurriculum(event) {
-      const validateCurriculum = /.(?:png|jpg|jpeg|pdf|docx)$/i;
-      const file = event.target.files[0];
-      console.log(file.name.match(validateCurriculum));
-      if (!file.name.match(validateCurriculum) || file.size > 5 * 125000) {
-        event.target.classList.add('error');
-        event.target.setCustomValidity(
-          'O tipo de arquivo inserido não é válido.',
-        );
-      } else {
-        event.target.classList.remove('error');
-        event.target.setCustomValidity('');
-      }
-    }
-
-    function verifyPhone(event) {
-      const validatePhone = /(\(?\d{2}\)?[\s-]?)?(\d{4,5})[\s-]?(\d{4})/;
-      event.target.value = event.target.value.replace(
-        validatePhone,
-        '($1) $2-$3',
+  verifyCurriculum() {
+    const file = this.form.curriculum.files[0];
+    if (!file.name.match(this.validateCurriculum) || file.size > 5 * 125000) {
+      this.form.curriculum.classList.add('error');
+      this.form.curriculum.setCustomValidity(
+        'O tipo de arquivo inserido não é válido.',
       );
+    } else {
+      this.form.curriculum.classList.remove('error');
+      this.form.curriculum.setCustomValidity('');
     }
+  }
+
+  verifyPhone() {
+    this.form.phone.value = this.form.phone.value.replace(
+      this.validatePhone,
+      '($1) $2-$3',
+    );
+  }
+
+  addFormEvents() {
+    this.form.email.addEventListener('change', this.verifyEmail);
+    this.form.curriculum.addEventListener('change', this.verifyCurriculum);
+    this.form.phone.addEventListener('change', this.verifyPhone);
+  }
+
+  init() {
+    if (this.form) {
+      this.addFormEvents();
+    }
+    return this;
   }
 }

@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="ilustration-container">
-      <img src="{% static 'public/assets/img/intro-illustration.png' %}" alt="Ilustração de Organizão">
+      <img src="{% static 'src/assets/img/intro-illustration.png' %}" alt="Ilustração de Organizão">
     </div>
   </div>
 </section>
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="img-container">
-      <img src="{% static 'public/assets/img/gallery/semana-capac.jpg' %}" alt="Time Ânimo na semana de capacitação">
+      <img src="{% static 'src/assets/img/gallery/semana-capac.jpg' %}" alt="Time Ânimo na semana de capacitação">
     </div>
   </div>
 </section>
@@ -62,7 +62,7 @@
           {% for partner in partners %}
           <li class="glide__slide">
             <a href="{{partner.url}}" class="slide-item" target="_blank">
-              <img src="{% static 'public/assets/img/partners/' %}{{partner.imagePath}}.png" alt="Parceiro - {{partner.name}}">
+              <img src="{% static 'src/assets/img/partners/' %}{{partner.imagePath}}.png" alt="Parceiro - {{partner.name}}">
             </a>
           </li>
           {% endfor %}

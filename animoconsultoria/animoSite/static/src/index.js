@@ -1,15 +1,31 @@
 import './styles/style.scss';
-import '../public/assets/icons/icons.css';
-import { initDropdown } from './modules/dropdown.js';
-import { initWhatsappMessage } from './modules/whatsappMessage.js';
-import { initMenuMobile } from './modules/menuMobile.js';
-import { initGlide } from './modules/glide.js';
-import { initValidateProcessForm } from './modules/validateProcessForm.js';
-import { initCardTextCutter } from './modules/cardTextCutter.js';
+import './assets/icons/icons.css';
 
-initDropdown();
-initWhatsappMessage();
-initMenuMobile();
-initGlide();
-initValidateProcessForm();
-initCardTextCutter();
+import Dropdown from './modules/dropdown.js';
+import Message from './modules/whatsappMessage.js';
+import MenuMobile from './modules/menuMobile.js';
+import CustomGlide from './modules/glide.js';
+import ValidateProcessForm from './modules/validateProcessForm.js';
+import CardTextCutter from './modules/cardTextCutter.js';
+
+const dropdown = new Dropdown(
+  '[data-dropdown="trigger"]',
+  '[data-dropdown="menu"]',
+);
+dropdown.init();
+
+const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="menu"]');
+menuMobile.init();
+
+const servicesCard = new CardTextCutter('[data-textsize]');
+servicesCard.cut();
+
+const whatsappMessage = new Message('.whatsapp');
+whatsappMessage.init();
+
+const validateForm = new ValidateProcessForm('[data-form="selectiveProcess"]');
+validateForm.init();
+
+const customGlide = new CustomGlide('.glide');
+customGlide.constructor.renderBullets();
+customGlide.init();

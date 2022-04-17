@@ -1,21 +1,33 @@
-import { handleOutsideClick } from "./helpers.js";
+import handleOutsideClick from './helpers.js';
 
-export function initDropdown() {
-  const servicesTrigger = document.querySelector("[data-dropdown='trigger']");
-  const servicesMenu = document.querySelector("[data-dropdown='menu']");
+export default class Dropdow {
+  constructor(trigger, menu) {
+    this.trigger = document.querySelector(trigger);
+    this.menu = document.querySelector(menu);
+    this.activeClass = 'active';
 
-  if (servicesTrigger && servicesMenu) {
-    servicesTrigger.addEventListener("click", handleServicesClick);
+    this.handleServicesClick = this.handleServicesClick.bind(this);
+  }
 
-    function handleServicesClick() {
-      [servicesTrigger, servicesMenu].forEach((element) => {
-        element.classList.add("active");
+  handleServicesClick() {
+    [this.trigger, this.menu].forEach((element) => {
+      element.classList.add(this.activeClass);
+    });
+    handleOutsideClick(this.menu, () => {
+      [this.trigger, this.menu].forEach((element) => {
+        element.classList.remove(this.activeClass);
       });
-      handleOutsideClick(servicesMenu, () => {
-        [servicesTrigger, servicesMenu].forEach((element) => {
-          element.classList.remove("active");
-        });
-      });
+    });
+  }
+
+  addDropdownEvents() {
+    this.trigger.addEventListener('click', this.handleServicesClick);
+  }
+
+  init() {
+    if (this.trigger && this.menu) {
+      this.addDropdownEvents();
     }
+    return this;
   }
 }
